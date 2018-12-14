@@ -22,11 +22,15 @@
 
     从用户行为——功能、内容、产品的喜好等
 
+
 数据组织形式
 内容+维度
-原图链接：https://my.oschina.net/osccreate/blog/795760：
+原图链接：https://my.oschina.net/osccreate/blog/795760
+
+
 技术手段
 原图链接：https://my.oschina.net/osccreate/blog/795760
+
 Java层实现功能
 1.自定义业务数据链路化
 
