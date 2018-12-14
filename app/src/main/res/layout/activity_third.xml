@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qiudaoyu.test.MainActivity">
+
+    <TextView
+        android:id="@+id/anr"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="anr" />
+
+    <TextView
+        android:id="@+id/crash"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="crash" />
+
+
+    <TextView
+        android:id="@+id/http"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="http" />
+
+
+    <TextView
+        android:id="@+id/gc"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="gc" />
+
+
+</LinearLayout>

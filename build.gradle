@@ -1,0 +1,84 @@
+buildscript {
+
+    ext {
+        // 统一项目环境
+        develop = true
+
+        deployVersion = "0.2.2-SNAPSHOT"
+
+        version = "0.2.2-SNAPSHOT"
+
+        commDependencies = [
+                supp          : 'com.android.support:appcompat-v7:26.1.0',
+                gradle        : 'com.android.tools.build:gradle:3.1.4',
+                transform     : 'com.android.tools.build:transform-api:1.5.0',
+                asm           : 'org.ow2.asm:asm:5.1',
+                protobuf      : 'com.google.protobuf:protobuf-lite:3.0.0',
+                lua           : 'cc.chenhe:android-lua:1.0.2',
+                commons       : 'org.apache.commons:commons-lang3:3.1',
+                retrofit      : 'com.squareup.retrofit2:retrofit:2.4.0',
+                monitor       : "com.qiudaoyu.monitor:monitor:${version}",
+                mmkv          : 'com.tencent:mmkv:1.0.13'
+        ]
+
+    }
+
+    repositories {
+
+
+        maven {
+            url 'https://maven.aliyun.com/repository/google/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/jcenter/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central/'
+        }
+        google()
+        mavenCentral()
+        jcenter()
+
+
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.qiudaoyu.monitor:plugin:${rootProject.ext.version}"
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+
+        maven {
+            url 'https://maven.aliyun.com/repository/google/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/jcenter/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central/'
+        }
+
+        google()
+        mavenCentral()
+        jcenter()
+
+    }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+    rootProject.task(":app:uploadArchives")
+}
+
+//发布插件和jar包
+task Adeploy(dependsOn: ["clean", ":core:uploadArchives", ":plugin:uploadArchives"]) {
+
+}
+

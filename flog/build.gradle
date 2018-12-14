@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+android {
+    compileSdkVersion 26
+
+
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation commDependencies.supp
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation commDependencies.commons
+}
+
+//uploadArchives {
+//    repositories.mavenDeployer {
+//
+//        repository(url: RELEASE_REPOSITORY_URL) {
+//            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+//        }
+//
+//        snapshotRepository(url: SNAPSHOT_REPOSITORY_URL) {
+//            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+//        }
+//        pom.project {
+//            groupId "com.zmsoft.log"
+//            artifactId "flog"
+//            version "1.0.0-snapchat"
+//        }
+//    }
+//}

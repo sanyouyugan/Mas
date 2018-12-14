@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+apply plugin: 'monitor'
+def config = rootProject.ext
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.qiudaoyu.monitor"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug { minifyEnabled false }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//默认不扫描引用的依赖,如果在include中包含依赖的完整名称：com.qiudaoyu.monitor:monitor:1.0.2
+//先判断是否在include內在判断是否在exclude里
+monitor {
+    //日志
+    debug true
+    //jar包完全一致才扫描
+    include = []
+    //依赖和类含有就剔除
+    exclude = ["cc.chenhe.lib.androidlua", "com.qiudaoyu.monitor.R", "android.support", "qiudaoyu.com.flog"]
+
+    //aop路径
+    maops "src/main/assets/aops.json"
+
+}
+
+dependencies {
+    implementation commDependencies.supp
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    if (config.develop) {
+        implementation project(':core')
+    } else {
+        implementation commDependencies.monitor
+    }
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation files('libs/commons-codec-1.8.jar')
+}

@@ -1,0 +1,35 @@
+def config = rootProject.ext
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories {
+    google()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi() //gradle sdk
+    implementation localGroovy() //groovy sdk
+    implementation commDependencies.gradle
+    implementation commDependencies.transform
+    implementation commDependencies.asm
+
+}
+uploadArchives {
+    repositories.mavenDeployer {
+
+        repository(url: RELEASE_REPOSITORY_URL) {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
+
+        snapshotRepository(url: SNAPSHOT_REPOSITORY_URL) {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
+        pom.project {
+            groupId "com.qiudaoyu.monitor"
+            artifactId "plugin"
+            version "${config.deployVersion}"
+        }
+    }
+}

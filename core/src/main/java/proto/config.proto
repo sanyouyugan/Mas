@@ -1,0 +1,23 @@
+//proto的版本
+
+syntax = "proto3";
+option java_package = "com.qiudaoyu.monitor.pb";
+option java_outer_classname = "ConfigProto";
+
+message ConfigTable {
+    int32 version = 1;
+    repeated HaseNode hashIndexTable = 2;
+}
+
+message HaseNode {
+    int32 hashA = 1;
+    int32 hashB = 2;
+    bool isExist = 3;
+    MethodConfig data = 4;
+}
+
+message MethodConfig {
+    int32 beforeExceptionAfter = 1;
+    string luaString = 2;
+}
+

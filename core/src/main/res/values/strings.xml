@@ -1,0 +1,13 @@
+<resources>
+
+
+    <item name="mas_tag_view_value" type="id" />
+    <item name="mas_tag_view_id" type="id" />
+    <item name="mas_tag_view_ignored" type="id" />
+    <item name="mas_tag_view_properties" type="id" />
+    <item name="mas_tag_view_onclick_timestamp" type="id" />
+    <item name="mas_tag_view_fragment_name" type="id" />
+    <item name="mas_tag_view_fragment_name2" type="id" />
+    <item name="mas_tag_view_activity" type="id" />
+
+</resources>

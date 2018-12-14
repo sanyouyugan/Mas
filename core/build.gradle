@@ -1,0 +1,108 @@
+def config = rootProject.ext
+apply plugin: 'com.android.library'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'maven'
+android {
+    compileSdkVersion 26
+
+
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "SDK_VER", "\"${config.version}\""
+
+            minifyEnabled false
+        }
+        release {
+            buildConfigField "String", "SDK_VER", "\"${config.version}\""
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java {
+                srcDirs 'src/main/java'
+            }
+            proto {
+                srcDirs 'src/main/java/proto'
+            }
+        }
+    }
+
+}
+
+//android studio 使用 pb
+//https://www.jianshu.com/p/df200894f5da
+protobuf {
+    protoc {
+        // You still need protoc like in the non-Android case
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            // The codegen for lite comes as a separate artifact
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                // In most cases you don't need the full Java output
+                // if you use the lite output.
+                remove java
+            }
+            task.plugins {
+                javalite {}
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // You need to depend on the lite runtime library, not protobuf-java
+    compileOnly commDependencies.protobuf
+    implementation commDependencies.supp
+    implementation commDependencies.lua
+    implementation commDependencies.asm
+    implementation commDependencies.commons
+    implementation commDependencies.retrofit
+    implementation commDependencies.mmkv
+
+
+
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+
+        repository(url: RELEASE_REPOSITORY_URL) {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
+
+        snapshotRepository(url: SNAPSHOT_REPOSITORY_URL) {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
+        pom.project {
+            groupId "com.qiudaoyu.monitor"
+            artifactId "monitor"
+            if (config.develop) {
+                version "${config.deployVersion}"
+            } else {
+                version "${config.version}"
+            }
+        }
+    }
+}
