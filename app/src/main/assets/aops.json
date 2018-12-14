@@ -1,3 +1,20 @@
 ﻿[
-
+  {
+    "dependent": "commons-codec-1.8.jar",
+    "clazz": "com.zmsoft.test.ThirdActivity",
+    "name": "abc",
+    "params": [
+      "abc",
+      "1",
+      "1"
+    ]
+  },
+  {
+    "dependent": "com.squareup.okhttp3:okhttp",
+    "clazz": "okhttp3.OkHttpClient$Builder",
+    "name": "build",
+    "params": [
+      "okhttp3.OkHttpClient$Builder.build"
+    ]
+  }
 ]
