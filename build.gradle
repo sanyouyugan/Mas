@@ -9,22 +9,25 @@ buildscript {
         version = "0.2.2-SNAPSHOT"
 
         commDependencies = [
-                supp          : 'com.android.support:appcompat-v7:26.1.0',
-                gradle        : 'com.android.tools.build:gradle:3.1.4',
-                transform     : 'com.android.tools.build:transform-api:1.5.0',
-                asm           : 'org.ow2.asm:asm:5.1',
-                protobuf      : 'com.google.protobuf:protobuf-lite:3.0.0',
-                lua           : 'cc.chenhe:android-lua:1.0.2',
-                commons       : 'org.apache.commons:commons-lang3:3.1',
-                retrofit      : 'com.squareup.retrofit2:retrofit:2.4.0',
-                monitor       : "com.qiudaoyu.monitor:monitor:${version}",
-                mmkv          : 'com.tencent:mmkv:1.0.13'
+                supp     : 'com.android.support:appcompat-v7:26.1.0',
+                gradle   : 'com.android.tools.build:gradle:3.1.4',
+                transform: 'com.android.tools.build:transform-api:1.5.0',
+                asm      : 'org.ow2.asm:asm:5.1',
+                protobuf : 'com.google.protobuf:protobuf-lite:3.0.0',
+                lua      : 'cc.chenhe:android-lua:1.0.2',
+                commons  : 'org.apache.commons:commons-lang3:3.1',
+                retrofit : 'com.squareup.retrofit2:retrofit:2.4.0',
+                monitor  : "com.sanyouyu.monitor:monitor:${version}",
+                mmkv     : 'com.tencent:mmkv:1.0.13',
+                gson     : 'com.google.code.gson:gson:2.8.5'
         ]
 
     }
 
     repositories {
-
+        maven {
+            url uri('./repo')
+        }
 
         maven {
             url 'https://maven.aliyun.com/repository/google/'
@@ -35,16 +38,12 @@ buildscript {
         maven {
             url 'https://maven.aliyun.com/repository/central/'
         }
-        google()
-        mavenCentral()
-        jcenter()
-
-
+        
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath "com.qiudaoyu.monitor:plugin:${rootProject.ext.version}"
+        classpath "com.sanyouyu.monitor:plugin:${rootProject.ext.version}"
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -55,6 +54,10 @@ allprojects {
     repositories {
 
         maven {
+            url uri('./repo')
+        }
+
+        maven {
             url 'https://maven.aliyun.com/repository/google/'
         }
         maven {
@@ -64,9 +67,6 @@ allprojects {
             url 'https://maven.aliyun.com/repository/central/'
         }
 
-        google()
-        mavenCentral()
-        jcenter()
 
     }
 }

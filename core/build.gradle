@@ -80,23 +80,22 @@ dependencies {
     implementation commDependencies.commons
     implementation commDependencies.retrofit
     implementation commDependencies.mmkv
-
-
+    implementation commDependencies.gson
 
 }
 
 uploadArchives {
     repositories.mavenDeployer {
 
-        repository(url: RELEASE_REPOSITORY_URL) {
-            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        repository(url:uri('../repo')) {
+
         }
 
-        snapshotRepository(url: SNAPSHOT_REPOSITORY_URL) {
-            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        snapshotRepository(url:uri('../repo')) {
+
         }
         pom.project {
-            groupId "com.qiudaoyu.monitor"
+            groupId "com.sanyouyu.monitor"
             artifactId "monitor"
             if (config.develop) {
                 version "${config.deployVersion}"

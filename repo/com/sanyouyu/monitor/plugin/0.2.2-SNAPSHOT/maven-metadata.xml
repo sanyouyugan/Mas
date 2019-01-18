@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.sanyouyu.monitor</groupId>
+  <artifactId>plugin</artifactId>
+  <version>0.2.2-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190118.073427</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20190118073427</lastUpdated>
+  </versioning>
+</metadata>
